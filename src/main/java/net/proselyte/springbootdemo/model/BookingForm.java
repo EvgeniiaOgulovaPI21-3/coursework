@@ -6,7 +6,6 @@ public class BookingForm {
     private String date;
     private String time;
     private String guests;
-    // стандартные геттеры/сеттеры
 
     public String getName() {
         return name;

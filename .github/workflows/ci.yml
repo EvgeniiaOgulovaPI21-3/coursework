@@ -16,16 +16,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2  # Клонирование репозитория
 
-      - name: Set up Java
+      - name: Set up Java 17
         uses: actions/setup-java@v2
         with:
-          java-version: '11'  # Устанавливаем нужную версию Java (например, Java 11)
+          java-version: '17'  # Устанавливаем Java 17
 
       - name: Cache Maven dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3  # Используем последнюю версию actions/cache
         with:
           path: ~/.m2/repository  # Кешируем зависимости Maven, чтобы ускорить сборку
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}  # Ключ кеша
           restore-keys: |
             ${{ runner.os }}-maven-
 
