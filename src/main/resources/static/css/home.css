@@ -1,0 +1,296 @@
+/*==================================================================
+  1. Корневые переменные
+==================================================================*/
+:root {
+    --primary-color: #ff66b2;
+    --secondary-color: #ff99cc;
+    --dark-color: #d63384;
+
+    /* Для override подсветки в pink */
+    --pink-100: #ffe6f0;
+    --pink-300: #ff99cc;
+    --pink-500: #ff66b2;
+}
+
+/*==================================================================
+  2. Глобальные сбросы
+==================================================================*/
+* {
+    box-sizing: border-box;
+}
+.col-lg-6 img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+}
+
+/*==================================================================
+  3. Hero Section
+==================================================================*/
+.hero-section {
+    /* полупрозрачный чёрный оверлей, размер по контейнеру */
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    position: relative;
+}
+.hero-details {
+    padding-top: 5rem;
+}
+
+/*==================================================================
+  4. Кнопки
+==================================================================*/
+.btn-pink {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+    transition: all 0.3s;
+}
+.btn-pink:hover {
+    background-color: var(--dark-color);
+    border-color: var(--dark-color);
+    color: #ffffff;
+}
+
+/*==================================================================
+  5. Feature Cards
+==================================================================*/
+.feature-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+.feature-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+/*==================================================================
+  6. Градиентный текст (pink-text)
+==================================================================*/
+.pink-text {
+    background: linear-gradient(
+            90deg,
+            #ff66b2,
+            #d9b8c8,
+            #ff66b2,
+            #d9b8c8
+    );
+    background-size: 300% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 4s ease infinite;
+}
+@keyframes gradient-shift {
+    0%   { background-position: 0%   center; }
+    100% { background-position: 100% center; }
+}
+
+/*==================================================================
+  7. Стили для формы бронирования
+==================================================================*/
+/* Обёртка floating-полей */
+#reservation .form-floating {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+/* Общие стили для input и select */
+#reservation .form-control,
+#reservation .form-select {
+    width: 100%;
+    padding: 1.25rem 1rem;
+    height: calc(3.5rem + 2px);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    background-color: #fff;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+/* Плавающие лейблы */
+#reservation .form-floating > label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 1rem;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+#reservation .form-floating label,
+#reservation .form-select {
+    font-size: 1.05rem; /* Размер шрифта как в других полях */
+    line-height: 1.5;
+}
+#reservation .form-control:focus ~ label,
+#reservation .form-control:not(:placeholder-shown) ~ label {
+    opacity: 0;
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+/* Специальные отступы для даты, времени, телефона */
+#dateInput {
+    padding-right: 2.5rem;
+    background-position: right 0.75rem center;
+}
+#timeInput {
+    padding-right: 2.5rem;
+    background-position: right 0.75rem center;
+}
+#phoneInput {
+    padding-right: 3rem;
+}
+
+/* Фокус (розовый акцент) */
+#reservation .form-control:focus,
+#reservation .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(255,102,178,0.2);
+    outline: none;
+}
+
+/*==================================================================
+  8. Кастомный селект «Количество гостей»
+==================================================================*/
+#reservation .guests-select-wrapper {
+    position: relative;             /* ↑ чтобы label “привязался” именно к этому контейнеру */
+    width: 100%;                    /* ↑ чтобы растянуть на всю колонку */
+    margin-bottom: 1rem;            /* ↑ как у остальных form-floating */
+    height: calc(3.5rem + 2px);
+}
+.guests-select {
+    width: 100%;
+    height: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1.05rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    background-color: #fff;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,\
+%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236c757d'%3e\
+%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 2rem center;
+    background-size: 20px;
+    transition: border-color .2s, box-shadow .2s;
+    line-height: calc(3.5rem /*высота wrapper*/ - 2 * 0.75rem /*паддинги*/) /*≈2rem*/;
+}
+.guests-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(255,102,178,0.2);
+    outline: none;
+}
+#reservation .guests-select-label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: #6c757d;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    z-index: 1;
+}
+.guests-select:not(:invalid) + .guests-select-label,
+.guests-select:focus + .guests-select-label {
+    opacity: 0;
+    transform: scale(0.85) translateY(-0.5rem);
+}
+
+/* Подсветка опций селекта гостей */
+.guests-select option:hover {
+    background-color: var(--pink-300);
+    color: #fff;
+}
+.guests-select option:checked {
+    background-color: var(--pink-500);
+    color: #fff;
+}
+@-moz-document url-prefix() {
+    .guests-select option:hover   { background-color: var(--pink-300); color: #fff; }
+    .guests-select option:checked { background-color: var(--pink-500); color: #fff; }
+}
+
+/*==================================================================
+  9. Override Flatpickr (календарь)
+==================================================================*/
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+    background: var(--pink-500) !important;
+    border-color: var(--pink-500) !important;
+    color: #fff !important;
+}
+.flatpickr-day:hover {
+    background: var(--pink-300) !important;
+    color: #fff !important;
+}
+.flatpickr-day.today {
+    background: var(--pink-100) !important;
+    border-color: var(--pink-500) !important;
+    color: var(--pink-500) !important;
+}
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+    color: var(--pink-500) !important;
+}
+.flatpickr-current-month .cur-month,
+.flatpickr-weekday {
+    color: var(--pink-500) !important;
+}
+.hero-contact {
+    display: flex;
+    align-items: center;  /* центрирует всё по вертикали */
+    justify-content: center;
+}
+.hero-contact .contact-phone {
+    display: flex;
+    align-items: center;
+}
+.hero-contact .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    color: #ff66b2;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.hero-contact .social-icon + .social-icon {
+    margin-left: 1rem;
+}
+
+/* hover-эффект для иконок */
+.hero-contact .social-icon:hover {
+    background-color: #ff66b2;
+    color: white;
+    transform: translateY(-3px);
+}

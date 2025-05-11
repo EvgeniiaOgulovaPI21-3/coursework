@@ -1,0 +1,147 @@
+.auth-container {
+    max-width: 400px;
+    margin: 4.5rem auto;
+    margin-bottom: 1.4rem;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    background: white;
+}
+.auth-header {
+    color: #d63384;
+    margin-bottom: 1.5rem;
+}
+.form-floating {
+    margin-bottom: 1.2rem;
+}
+.form-floating.invalid .form-control {
+    border-color: #dc3545;
+}
+.form-floating.invalid label {
+    color: #dc3545;
+}
+.form-control.is-invalid, .was-validated .form-control:invalid,
+.form-select.is-invalid, .was-validated .form-select:invalid {
+    background-image: none !important;
+    padding-right: 12px !important;
+    background-position: unset !important;
+}
+.form-floating.is-invalid .bi-exclamation-circle-fill {
+    display: none;
+}
+.form-control {
+    border-radius: 8px;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+}
+.form-control:focus {
+    border-color: #d63384;
+    box-shadow: 0 0 0 0.25rem rgba(214, 51, 132, 0.25);
+}
+.btn-primary {
+    background-color: #d63384;
+    border-color: #d63384;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+.btn-primary:hover {
+    background-color: #b52d6f;
+    border-color: #b52d6f;
+}
+.auth-footer {
+    margin-top: 1.5rem;
+    color: #6c757d;
+}
+.auth-link {
+    color: #d63384;
+    text-decoration: none;
+}
+.auth-link:hover {
+    text-decoration: underline;
+}
+.error-message-login {
+    color: #dc3545;
+    margin-bottom: 1rem;
+}
+.error-message-signup {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+.password-match {
+    font-size: 0.875rem;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+.valid-feedback, .invalid-feedback {
+    display: block;
+    font-size: 0.875rem;
+}
+/*.invalid-feedback {*/
+/*    display: none;*/
+/*    color: #dc3545;*/
+/*    font-size: 0.875rem;*/
+/*    margin-top: 0.25rem;*/
+/*}*/
+
+/*.is-invalid {*/
+/*    border-color: #dc3545 !important;*/
+/*}*/
+
+/*.is-invalid ~ .invalid-feedback {*/
+/*    display: block;*/
+/*}*/
+
+/* Иконки в сообщениях об ошибках */
+/*.bi-exclamation-circle {*/
+/*    font-size: 0.9rem;*/
+/*    margin-right: 0.25rem;*/
+/*}*/
+.form-floating,
+.guests-select-wrapper {
+    position: relative;      /* чтобы потом­няя абсолютная позиция работала от сюда */
+    /*margin-bottom: 2rem;   !* гарантированный отступ под ошибку *!*/
+}
+
+/*.form-floating .invalid-feedback,*/
+/*.guests-select-wrapper .invalid-feedback {*/
+/*    position: absolute;*/
+/*    top: 100%;               !* сразу под полем *!*/
+/*    left: 0;*/
+/*    margin-top: 0.25rem;     !* небольшой отступ *!*/
+/*}*/
+
+
+.guests-select {
+    width: 100%;
+    padding: 16px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    appearance: none;
+    background-color: white;
+    color: #6c757d;
+}
+.guests-select.has-value {
+    color: #212529;
+}
+/*.guests-select {*/
+/*    padding-right: 30px;*/
+/*}*/
+.form-floating .form-control {
+    padding-right: 40px;
+}
+
+
+/* Иконка «!» внутри поля */
+.invalid-icon-custom {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #dc3545;
+    z-index: 5;
+}
+
+

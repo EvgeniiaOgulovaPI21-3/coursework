@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Блюда — PINK</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="/css/list.css" rel="stylesheet">
+</head>
+<body>
+<div th:insert="~{blocks/header.html :: header}"></div>
+
+<!-- Фиксированная кнопка создания -->
+<div class="create-btn-container" th:if="${authorized && isAdmin}">
+  <a th:href="@{/dish-create}" class="create-btn" title="Создать новое блюдо">
+    <i class="bi bi-plus"></i>
+  </a>
+</div>
+
+<div class="container">
+  <div class="search-container mb-4">
+    <form th:action="@{/dish}" method="get" class="position-relative" id="searchForm">
+      <div class="d-flex align-items-center" style="max-width: 600px;">
+      <i class="bi bi-search search-icon position-absolute"></i>
+      <input type="text"
+             name="keyword"
+             th:value="${keyword}"
+             class="search-input"
+             placeholder="Поиск по названию или цене..."
+             aria-label="Поиск"
+             id="searchInput">
+      <button type="submit" class="btn btn-link p-0 ms-2">
+        <i class="bi bi-arrow-right-circle-fill" style="color: var(--primary-color); font-size: 2.5rem;"></i>
+      </button>
+      </div>
+    </form>
+    <small class="text-muted ms-2">Введите название или максимальную цену (например: 500)</small>
+  </div>
+  <div class="alert alert-info" th:if="${dish != null and dish.isEmpty()}">
+    <i class="bi bi-info-circle me-2"></i>К сожалению, по вашему запросу ничего не найдено
+  </div>
+  <div class="dish-grid">
+    <div th:each="dish : ${dish}">
+      <div class="dish-card">
+        <img th:src="@{${dish.imageUrl}}" alt="[[${dish.name}]]" class="dish-image">
+        <div class="dish-body">
+          <div>
+            <div class="dish-title" th:text="${dish.name}"></div>
+            <div class="price" th:text="${dish.price} + ' ₽'"></div>
+          </div>
+          <div>
+            <div class="toggle-buttons">
+              <button type="button" class="btn-toggle toggle-description" data-dish-id="[[${dish.id}]]">
+                <i class="bi bi-chevron-down" aria-hidden="true"></i><span>Описание</span>
+              </button>
+              <button type="button" class="btn-toggle toggle-kbju" data-dish-id="[[${dish.id}]]">
+                <i class="bi bi-chevron-down" aria-hidden="true"></i><span>КБЖУ</span>
+              </button>
+            </div>
+            <div class="description-content" id="description-[[${dish.id}]]">
+              <p th:text="${dish.description}">Описание блюда</p>
+            </div>
+            <div class="kbju-content" id="energyValue-[[${dish.id}]]">
+              <pre th:text="${dish.energyValue}"></pre>
+            </div>
+          </div>
+          <div class="action-buttons" th:if="${authorized && isAdmin}">
+            <a th:href="@{dish-update/{id}(id=${dish.id})}" class="action-btn edit" title="Редактировать">
+              <i class="bi bi-pencil"></i>
+            </a>
+            <a th:href="@{dish-delete/{id}(id=${dish.id})}" class="action-btn delete" title="Удалить" onclick="return confirm('Вы действительно хотите удалить это блюдо?')">
+              <i class="bi bi-trash"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:insert="~{blocks/footer.html :: footer}"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="/js/dish-list.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+/* header-footer.css */
+
+/* Стили для navbar (шапка) */
+:root {
+    --primary-color: #ff66b2;
+}
+
+/* Текст роли/имени */
+/*.text-pink {*/
+/*    color: var(--primary-color) !important;*/
+/*}*/
+.text-pink {
+    color: #000000 !important;  /* Черный цвет */
+    font-weight: bold;  /* Жирный шрифт */
+}
+
+/* Розные outline-кнопки */
+.btn-outline-pink {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: all 0.2s;
+}
+
+.btn-outline-pink:hover,
+.btn-outline-pink:focus {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+.navbar-pink {
+    background-color: white;
+    box-shadow: 0 2px 15px rgba(214, 51, 132, 0.1);
+    padding: 15px 0;
+    transition: all 0.3s ease;
+}
+
+.navbar-pink.scrolled {
+    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+.navbar-brand-pink {
+    font-weight: 700;
+    color: #ff66b2 !important;
+    font-size: 1.8rem;
+    letter-spacing: -0.5px;
+}
+
+.nav-link-pink {
+    font-weight: 500;
+    color: #495057 !important;
+    margin: 0 10px;
+    position: relative;
+}
+
+.nav-link-pink:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff66b2;
+    transition: width 0.3s;
+}
+
+.nav-link-pink:hover:after,
+.nav-link-pink.active:after {
+    width: 100%;
+}
+
+.dropdown-menu-pink {
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.nav-link-pink.active {
+    font-weight: 700 !important;
+}
+/* Если нужно также для выпадающих пунктов */
+.dropdown-menu-pink .dropdown-item.active {
+    font-weight: 700;
+}
+
+@media (max-width: 992px) {
+    .navbar-collapse-pink {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Стили для подвала */
+.footer-pink {
+    background-color: #ffe5ee;
+    padding: 30px 0 30px;
+    color: #495057;
+}
+
+.footer-logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ff66b2;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.footer-links h5 {
+    color: #212529;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #6c757d;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.footer-links a:hover {
+    color: #ff66b2;
+    padding-left: 5px;
+}
+
+.copyright {
+    text-align: left;
+    font-size: small;
+}

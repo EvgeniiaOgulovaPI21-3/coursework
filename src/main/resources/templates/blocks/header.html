@@ -1,0 +1,57 @@
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<div th:fragment="header">
+    <header class="site-header sticky-top py-1 d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <!-- Подключаем CSS для шапки -->
+        <link href="/css/header-footer.css" rel="stylesheet">
+
+        <nav class="navbar navbar-pink fixed-top navbar-expand-xl bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand navbar-brand-pink" href="/">PINK</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse navbar-collapse-pink" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-pink" aria-current="page" th:classappend="${#httpServletRequest.requestURI == '/'} ? ' active' : ''" href="/">Главная страница</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-link-pink" th:classappend="${#httpServletRequest.requestURI.startsWith('/dish') or
+                      #httpServletRequest.requestURI.startsWith('/drink')} ? ' active' : ''" role="button" data-bs-toggle="dropdown" aria-expanded="false">Меню</a>
+                            <ul class="dropdown-menu dropdown-menu-pink">
+                                <li><a class="dropdown-item" href="/dish">Блюда</a></li>
+                                <li><a class="dropdown-item" href="/drink">Напитки</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-pink" th:classappend="${#httpServletRequest.requestURI == '/author'} ? ' active' : ''" href="/author">О владельце</a>
+                        </li>
+                        <li class="nav-item" th:if="${authorized} and ${isAdmin}">
+                            <a class="nav-link nav-link-pink"
+                               th:classappend="${#httpServletRequest.requestURI == '/employee'} ? ' active' : ''"
+                               th:href="@{/employee}">
+                                Сотрудники
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Блок с кнопками для авторизации и профиля -->
+                    <div class="col-md-3 text-end">
+                        <!-- Отображаем роль или имя пользователя -->
+                        <span th:if="${authorized}" class="me-2 text-pink" th:text="${session.login}">User</span>
+
+                        <!-- Кнопка "Войти", если пользователь не авторизован -->
+                        <a type="button" class="btn btn-outline-pink me-2" th:href="@{/login}" th:if="${!authorized}">Войти</a>
+                        <!-- Кнопка "Зарегистрироваться", если пользователь не авторизован -->
+                        <a type="button" class="btn btn-outline-pink me-2" th:href="@{/registration}" th:if="${!authorized}">Зарегистрироваться</a>
+
+                        <!-- Кнопка "Выйти", если пользователь авторизован -->
+                        <a type="button" class="btn btn-outline-pink me-2" th:href="@{/logout}" th:if="${authorized}">Выйти</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+</div>
+<!--</html>-->

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>О владельце — PINK</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="/css/header-footer.css" rel="stylesheet">
+  <link href="/css/home.css" rel="stylesheet">
+  <style>
+    /* Авторская секция */
+    .owner-section {
+      padding: 4rem 0;
+      background-color: #f8f9fa;
+    }
+    /* Обёртка круглого фото */
+    .photo-wrapper {
+      width: 400px;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 50%; /* делаем круг */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin: 0 auto;
+    }
+    .owner-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .owner-info h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+    .owner-info .badge-diploma {
+      background-color: var(--primary-color);
+      color: #fff;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+    .owner-info .list-unstyled li {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+    .owner-info .list-unstyled li .star {
+      color: var(--primary-color);
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+<!-- Header -->
+<div th:insert="~{blocks/header.html :: header}"></div>
+
+<!-- Owner Section -->
+<section class="owner-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Текст владельца слева -->
+      <div class="col-md-7 owner-info order-md-1">
+        <span class="badge-diploma">Дипломная работа, 2025</span>
+        <h1 class="mb-3">Огулова Евгения Витальевна</h1>
+        <!-- Описание по пунктам -->
+        <ul class="list-unstyled mb-4">
+          <li><span class="star">★</span>Финансовый университет при Правительстве РФ</li>
+          <li><span class="star">★</span>Факультет информационных технологий и анализа больших данных</li>
+          <li><span class="star">★</span>Кафедра информационных технологий</li>
+          <li><span class="star">★</span>Направление подготовки: Прикладная информатика</li>
+          <li><span class="star">★</span>Профиль: ИТ-сервисы и технологии обработки данных в экономике и финансах</li>
+          <li><span class="star">★</span>Группа: ПИ21-3</li>
+          <li><span class="star">★</span>Тема дипломной работы: Разработка информационно-справочной системы ресторана</li>
+          <li><span class="star">★</span>Научный руководитель: Хасанов Ильнур Ильдарович</li>
+        </ul>
+        <!-- Контакты владельца -->
+        <p>
+          <i class="bi bi-telephone me-2"></i> 8 (964) 515-57-72<br>
+          <i class="bi bi-envelope me-2"></i> 215787@edu.fa.ru
+        </p>
+      </div>
+      <!-- Круглое фото владельца справа -->
+      <div class="col-md-5 text-center mb-4 mb-md-0 order-md-2">
+        <div class="photo-wrapper">
+          <img src="/images/owner.jpg" alt="Фото Евгении Огуловой" class="owner-photo">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div th:insert="~{blocks/footer.html :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
