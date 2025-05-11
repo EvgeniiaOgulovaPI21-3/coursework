@@ -25,7 +25,7 @@ jobs:
         uses: actions/cache@v3  # Используем последнюю версию actions/cache
         with:
           path: ~/.m2/repository  # Кешируем зависимости Maven, чтобы ускорить сборку
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}  # Ключ кеша
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}  # Ключ кеша
           restore-keys: |
             ${{ runner.os }}-maven-
 
@@ -36,11 +36,7 @@ jobs:
         run: mvn test  # Запуск всех unit-тестов
 
       - name: Upload test results
-        run: |
-          mkdir -p $(pwd)/test-results
-          mv target/surefire-reports/* $(pwd)/test-results/
-          echo "Test results have been uploaded to $(pwd)/test-results"
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: test-results
-#          path: target/surefire-reports  # Загружаем отчеты о тестах для дальнейшего анализа
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: target/surefire-reports  # Загружаем отчеты о тестах для дальнейшего анализа
