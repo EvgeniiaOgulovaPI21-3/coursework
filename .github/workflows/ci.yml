@@ -36,7 +36,11 @@ jobs:
         run: mvn test  # Запуск всех unit-тестов
 
       - name: Upload test results
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-results
-          path: target/surefire-reports  # Загружаем отчеты о тестах для дальнейшего анализа
+        run: |
+          mkdir -p $(pwd)/test-results
+          mv target/surefire-reports/* $(pwd)/test-results/
+          echo "Test results have been uploaded to $(pwd)/test-results"
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: test-results
+#          path: target/surefire-reports  # Загружаем отчеты о тестах для дальнейшего анализа
