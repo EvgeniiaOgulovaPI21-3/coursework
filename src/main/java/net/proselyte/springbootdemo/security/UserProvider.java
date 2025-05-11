@@ -32,7 +32,6 @@ public class UserProvider implements AuthenticationProvider {
         User user = userDetails.getUser();
 
         if (user == null) throw new BadCredentialsException("Пользователь с таким логином не найден");
-//        if (!user.getPassword().equals(password)) throw new BadCredentialsException("Пароль введён неверно");
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new BadCredentialsException("Пароль введён неверно");
         }
