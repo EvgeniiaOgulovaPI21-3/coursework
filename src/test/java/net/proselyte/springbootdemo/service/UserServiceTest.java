@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 class UserServiceTest {
 
     @Mock
-    private UserRepository userRepository;  // Мокаем репозиторий
+    private UserRepository userRepository;  // Мокаем репозито
 
     @Mock
     private BCryptPasswordEncoder passwordEncoder;  // Мокаем BCryptPasswordEncoder
