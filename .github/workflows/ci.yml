@@ -2,42 +2,38 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches:
-      - main  # Запускать процесс при пуше в основную ветку
+    branches: [ main ]
   pull_request:
-    branches:
-      - main  # Запускать процесс при создании Pull Request в основную ветку
+    branches: [ main ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Запускать на виртуальной машине с Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  # Клонирование репозитория
+        uses: actions/checkout@v4  # Обновили до v4
 
       - name: Set up Java 17
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3  # Обновили до v3
         with:
           java-version: '17'
           distribution: 'temurin'
 
       - name: Cache Maven dependencies
-        uses: actions/cache@v3  # Используем последнюю версию actions/cache
+        uses: actions/cache@v3
         with:
-          path: ~/.m2/repository  # Кешируем зависимости Maven, чтобы ускорить сборку
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-${{ github.sha }}  # Ключ кеша
-          restore-keys: |
-            ${{ runner.os }}-maven-
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
 
       - name: Build with Maven
-        run: mvn clean install -DskipTests=true  # Сборка проекта без выполнения тестов
+        run: mvn clean install -DskipTests=true
 
       - name: Run tests
-        run: mvn test  # Запуск всех unit-тестов
+        run: mvn test
 
       - name: Upload test results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Обновили до v3
         with:
           name: test-results
-          path: target/surefire-reports  # Загружаем отчеты о тестах для дальнейшего анализа
+          path: target/surefire-reports
